@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your Name — Frontend Engineer</title>
+  <meta name="description" content="Frontend Engineer portfolio: projects, experience, skills, contact."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <script src="https://kit.fontawesome.com/aebe510016.js" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Urbanist:wght@600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0b0d10;
+      --panel: #0f1318;
+      --card: #11161d;
+      --text: #d7dde5;
+      --muted: #9aa6b2;
+      --brand: #6ee7ff;
+      --brand-2: #a78bfa;
+      --accent: #22d3ee;
+      --ring: rgba(110,231,255,.25);
+      --radius: 18px;
+      --shadow: 0 10px 30px rgba(0,0,0,.35), 0 2px 8px rgba(0,0,0,.3);
+    }
+    @media (prefers-color-scheme: light) {
+      :root{
+        --bg: #fbfcfe; --panel:#ffffff; --card:#ffffff; --text:#101218; --muted:#4b5563; --brand:#0ea5e9; --brand-2:#7c3aed; --accent:#0284c7; --ring: rgba(14,165,233,.25);
+      }
+      header nav a{ color:#1f2937 }
+    }
+    *{ box-sizing:border-box }
+    html,body{ height:100% }
+    body{ margin:0; 
+        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        /* font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji"; */
+     color:var(--text); background: radial-gradient(1200px 1200px at 10% -10%, rgba(110,231,255,.12), transparent 50%), radial-gradient(900px 900px at 110% 0%, rgba(167,139,250,.15), transparent 40%), var(--bg); line-height:1.6 }
+
+    /* ====== Header / Nav ====== */
+    header{ position:sticky; top:0; z-index:50; backdrop-filter: blur(8px); background: linear-gradient(to bottom, rgba(10,12,18,.75), rgba(10,12,18,.35)); border-bottom: 1px solid rgba(255,255,255,.06) }
+    .nav{ max-width:1180px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:14px 20px }
+    .brand{ display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--text) }
+    .brand .logo{ width:36px; height:36px; border-radius:50%; background: conic-gradient(from 180deg, var(--brand), var(--brand-2), var(--brand)); box-shadow:0 0 0 3px rgba(255,255,255,.05), 0 6px 18px rgba(167,139,250,.35) }
+    .brand .name{ font-family: Urbanist, Inter, sans-serif; font-weight:800; letter-spacing:.4px }
+    nav ul{ display:flex; gap:18px; list-style:none; margin:0; padding:0 }
+    nav a{ text-decoration:none; color:var(--text); font-weight:600; padding:10px 12px; border-radius:12px }
+    nav a:hover, nav a:focus{ outline:none; background:rgba(255,255,255,.06); cursor: pointer; }
+    .hire-btn{ background: linear-gradient(90deg, var(--brand), var(--brand-2)); color:#0b0d10; padding:10px 14px; border-radius:14px; font-weight:800; border:none; cursor:pointer; box-shadow:0 6px 22px rgba(110,231,255,.25) }
+
+    /* ===== Sidebar ===== */
+    .sidebar{
+      position:fixed; top:0; left:0; bottom:0; width:220px;
+      background:var(--panel); padding:30px 20px; display:flex;
+      flex-direction:column; align-items:center; box-shadow:var(--shadow);
+    }
+    .brand{ text-align:center; margin-bottom:40px; }
+    .brand .logo{ width:60px; height:60px; border-radius:50%; background:conic-gradient(from 180deg, var(--brand), var(--brand-2), var(--brand)); margin:0 auto 12px; }
+    .brand .name{ font-family:Urbanist, sans-serif; font-weight:800; font-size:20px; }
+    .sidebar nav ul{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:18px; align-items:center; }
+    .sidebar nav a, .company{ color:var(--text); text-decoration:none; font-weight:600; padding:8px 14px; border-radius:12px; display:block; width:100%; text-align:center; transition:background .3s; }
+    .sidebar nav a:hover, .company:hover{ background: #38bdf8;
+  color: #000;
+  box-shadow: 0 6px 20px rgba(56,189,248,0.6);
+  transform: scale(1.05);  }
+    .hire-btn{ margin-top:auto; background:linear-gradient(90deg,var(--brand),var(--brand-2)); color:#0b0d10; padding:10px 16px; border-radius:14px; font-weight:800; border:none; cursor:pointer; }
+
+    /* ====== Hero ====== */
+    .hero{ position:relative; min-height:84vh; display:grid; place-items:center; overflow:hidden }
+    .hero video, .hero .backdrop{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter: saturate(1.1) contrast(1.05) brightness(.45) }
+    .hero .backdrop{ background: radial-gradient(900px 900px at 20% 10%, rgba(110,231,255,.15), transparent 50%), radial-gradient(800px 800px at 80% 20%, rgba(167,139,250,.18), transparent 45%); }
+    .hero-inner{ position:relative; z-index:2; max-width:1021px; padding:72px 0px; display:grid; grid-template-rows:1.2fr .8fr; gap:16px }
+    @media (max-width: 900px){ .hero-inner{ grid-template-columns:1fr; text-align:center } .hero-actions{ justify-content:center } }
+
+    .headline{ font-family: Urbanist, Inter, sans-serif; font-size: clamp(34px, 6vw, 64px); line-height:1.05; margin:0 0 18px; letter-spacing:.2px }
+    .subhead{ font-size: clamp(16px, 2.6vw, 20px); color:var(--muted); margin:0 0 28px }
+    .hero-actions{ display:flex; align-items:center; gap:14px; flex-wrap:wrap }
+    .btn{ border:1px solid rgba(255,255,255,.14); background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,0)); color:var(--text); padding:12px 16px; border-radius:14px; text-decoration:none; font-weight:700; display:inline-flex; align-items:center; gap:10px }
+    .btn:hover{ background: #38bdf8;
+  color: #000;
+  box-shadow: 0 6px 20px rgba(56,189,248,0.6);
+  transform: scale(1.05);}
+
+    .stats{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:28px }
+    .stat{ padding:16px; border:1px solid rgba(255,255,255,.08); border-radius:14px; background: rgba(0,0,0,.15) }
+    .stat b{ display:block; font-size:22px }
+    .stat:hover{background: #38bdf8;
+  color: #000;
+  box-shadow: 0 6px 20px rgba(56,189,248,0.6);
+  transform: scale(1.05);}
+
+    .hero-card{ align-self:center; justify-self:stretch; background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.1); border-radius: var(--radius); box-shadow: var(--shadow); padding:22px }
+    .hero-card .chip{ display:inline-block; padding:8px 12px; border-radius:999px; background: rgba(110,231,255,.12); border:1px solid var(--ring); font-weight:700; letter-spacing:.2px }
+
+    /* ===== Sections base ===== */
+    section{ padding:86px 20px }
+    .container{ max-width:1180px; margin-left:20% }
+    .section-head{ display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:26px; gap:16px; flex-wrap:wrap }
+    .kicker{ letter-spacing:.22em; text-transform:uppercase; color:var(--muted); font-weight:800; font-size:12px }
+    .title{ font-family: Urbanist, Inter, sans-serif; font-weight:800; letter-spacing:.3px; font-size: clamp(26px, 3.5vw, 36px); margin:6px 0 }
+    .desc{ color:var(--muted) }
+
+    /* ===== Projects ===== */
+    .grid{ display:grid; grid-template-columns: repeat(12, 1fr); gap:18px }
+    .card{ grid-column: span 6; background: var(--card); border-radius: var(--radius); border:1px solid rgba(255,255,255,.08); box-shadow: var(--shadow); overflow:hidden; display:flex; flex-direction:column; transition: transform .2s ease, box-shadow .2s ease }
+    .card:hover{ transform: translateY(-4px) }
+    .thumb{ aspect-ratio: 16/9; background: linear-gradient(120deg, rgba(110,231,255,.18), rgba(167,139,250,.18)); display:grid; place-items:center; font-weight:800; letter-spacing:.3px }
+    .card-body{ padding:18px }
+    .tagrow{ display:flex; gap:8px; flex-wrap:wrap }
+    .tag{ font-size:12px; padding:6px 10px; border:1px dashed rgba(255,255,255,.18); border-radius:999px; color:var(--muted) }
+    .card h3{ margin:6px 0 10px }
+    .card p{ color:var(--muted); margin:0 0 14px }
+    .card .links{ display:flex; gap:12px; margin-top:auto; padding:0 18px 18px }
+
+    @media (max-width: 900px){ .card{ grid-column: span 12 } }
+
+    /* ===== Experience Timeline ===== */
+    .timeline{ position:relative; margin-top:26px }
+    .timeline:before{ content:""; position:absolute; top:0; bottom:0; left:calc(12px + 2px); width:2px; background:linear-gradient(var(--brand), var(--brand-2)) }
+    .item{ display:grid; grid-template-columns: 28px 1fr; gap:16px; padding:18px 0 }
+    .dot{ width:24px; height:24px; border-radius:50%; background: radial-gradient(circle at 30% 30%, #fff, var(--brand)); box-shadow:0 0 0 4px rgba(110,231,255,.2) }
+    .role{ display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap }
+    .role h4{ margin:0 }
+    .role span{ color:var(--muted) }
+    .item .body{ color:var(--muted) }
+    .item :hover{ box-shadow: 0 6px 20px whitesmoke;}
+
+    /* ===== Skills ===== */
+    .skills{ display:flex; flex-wrap:wrap; gap:10px }
+    .pill{ display:flex; align-items:center; gap:8px; padding:10px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.1); background: #11161d; font-weight:700;  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+     }
+     .pill i {  font-size: 18px;}
+
+/* Active state (on click) */
+.pill:hover {
+  background: #38bdf8;
+  color: #000;
+  box-shadow: 0 6px 20px rgba(56,189,248,0.6);
+  transform: scale(1.05);
+}
+
+    /* ===== Contact ===== */
+    .contact{ display:grid; grid-template-columns: .8fr 1.2fr; gap:24px }
+    .contact .panel{ background: var(--card); padding:20px; border-radius:var(--radius); border:1px solid rgba(255,255,255,.08) }
+    .contact form{ display:grid; gap:12px }
+    .input{ border:1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.04); border-radius:12px; padding:12px 14px; color:var(--text) }
+    textarea.input{ min-height:120px; resize:vertical }
+    .submit{ justify-self:start; padding:12px 16px; border-radius:12px; border:none; background:linear-gradient(90deg, var(--brand), var(--brand-2)); color:#0b0d10; font-weight:800; cursor:pointer }
+    @media (max-width: 900px){ .contact{ grid-template-columns:1fr } }
+
+    /* ===== Footer ===== */
+    footer{ padding:40px 20px; color:var(--muted); text-align:center; border-top:1px solid rgba(255,255,255,.06) }
+
+    /* ===== Reveal Animations ===== */
+    .reveal{ opacity:0; transform: translateY(12px); transition: opacity .6s ease, transform .6s ease }
+    .reveal.active{ opacity:1; transform:none }
+    .profile-picture{ width:60px; height:60px; border-radius:50%; object-fit:cover; }
+
+   
+
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <!-- <header>
+    <div class="nav">
+      <a class="brand" href="#home" aria-label="Home">
+        <span class="logo" aria-hidden="true"></span>
+        <span class="name">Your Name</span>
+      </a>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <a class="hire-btn" href="mailto:you@example.com">Hire Me</a>
+    </div>
+  </header> -->
+ <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logo">
+        <img src="profile.jpg" alt="profile picture" class="profile-picture">
+      </div>
+      <div class="name">Pooja Sonare</div>
+    </div>
+    <nav>
+      <ul>
+        <li ><a href="#home" >Home</a></li>
+        <li ><a href="#projects">Projects</a></li>
+        <li ><a href="#experience">Experience</a></li>
+        <li ><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <a class="hire-btn" href="mailto:poojasonare2712@gmail.com">Hire Me</a>
+  </aside>
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <!-- Optional: drop a muted looping video in /public/hero.mp4 -->
+    <!-- <video autoplay muted loop playsinline poster="" aria-hidden="true">
+      <source src="hero.mp4" type="video/mp4" />
+    </video> -->
+    <div class="backdrop" aria-hidden="true"></div>
+
+    <div class="hero-inner">
+      <!-- <div> -->
+        <h1 class="headline">
+     <span style="background:linear-gradient(90deg,var(--brand),var(--brand-2)); -webkit-background-clip:text; background-clip:text; color:transparent">Frontend Developer (React, TypeScript, Javascript)</span></h1>
+        <p class="subhead">Frontend Developer experienced in building scalable, high-performance web applications using <b>React, TypeScript, JavaScript, GenAI and modern UI frameworks</b>>. Strong in <b>data structures, algorithms, and real-time data-driven UI development</b>.</p>
+        <div class="hero-actions">
+          <!-- <a class="btn" href="#projects">View Projects</a> -->
+          
+           <a class="btn" href="https://www.naukri.com/code360/profile/PoojaTech" target="_blank" rel="noreferrer">Code360</a>
+          
+          <a class="btn" href="https://github.com/Pooja-Techn" target="_blank" rel="noreferrer">GitHub</a>
+          <a class="btn" href="Pooja_Sonare_Resume.pdf" download>Download Résumé</a>
+          <div class="stat"><b>4+ yrs</b><span>Experience</span></div>
+          <div class="stat"><b>8+</b><span>Projects Built</span></div>
+        </div>
+        <div class="stats">
+            
+         
+        </div>
+      <!-- </div> -->
+
+      <!-- <aside class="hero-card">
+        <span class="chip">Open to SDE‑2 Frontend roles</span>
+        <h3 style="margin:12px 0 6px"></h3>-->
+        <!-- <p class="desc">Design‑systems, accessible UI, performance profiling, data‑viz, SSR/SSG, micro‑frontends, and clean component APIs.</p> -->
+        <!--<ul style="margin:12px 0 0 18px; padding:0">
+          <li>React, TypeScript, JavaScript (ES6+), Redux, HTML5, CSS3, Bootstrap, Material-UI, Styled-Components,
+D3.js</li>
+          <li>firebase, MongoDB</li>
+          <li>Node.js, REST APIs, Python</li>
+          <li>Data Structures and Algorithms, Problem Solving, Responsive Web Design, Asynchronous Data Handling, GenAI</li>
+        </ul>
+      </aside> -->
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="reveal">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="kicker">Selected Work</div>
+          <h2 class="title">Projects</h2>
+        </div>
+        <p class="desc"></p>
+      </div>
+
+      <div class="grid">
+        <article class="card">
+          <div class="thumb">
+            <img src="project.png" alt="project" style="width: 100%; height: auto;" />
+          </div>
+          <div class="card-body">
+            <div class="tagrow">
+              <span class="tag">React</span><span class="tag">Redux</span><span class="tag">firebase</span><span class="tag">HTML5</span><span class="tag">CSS3</span>
+            </div>
+            <h3>ShopSizzle</h3>
+            <p><b>Interactive, real‑time inventory updates </b>and integrated firebase for authentication and product management. <b>Search functionality</b> includes filtering by category, price range.
+                Product, Cart, Order and User management
+            </p>
+          </div>
+          <div class="links">
+            <a class="btn" href="https://busy-buy---1.web.app/" target="_blank">Live</a>
+            <a class="btn" href="https://github.com/Pooja-Techn/ShopSizzle" target="_blank">Code</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="thumb">Design System</div>
+          <div class="card-body">
+            <div class="tagrow">
+              <span class="tag">React</span><span class="tag">Storybook</span><span class="tag">A11y</span>
+            </div>
+            <h3>UI Kit Pro</h3>
+            <p>Composable component library with tokens, themes, and dark‑mode baked in.</p>
+          </div>
+          <div class="links">
+            <a class="btn" href="#">Live</a>
+            <a class="btn" href="#">Docs</a>
+          </div>
+        </article>
+
+        <!-- <article class="card">
+          <div class="thumb">E‑commerce</div>
+          <div class="card-body">
+            <div class="tagrow">
+              <span class="tag">Next.js</span><span class="tag">Stripe</span><span class="tag">SSR</span>
+            </div>
+            <h3>ShopSwift</h3>
+            <p>Headless storefront with server‑components, instant search, and edge caching.</p>
+          </div>
+          <div class="links">
+            <a class="btn" href="#">Live</a>
+            <a class="btn" href="#">Code</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="thumb">Data‑viz</div>
+          <div class="card-body">
+            <div class="tagrow">
+              <span class="tag">D3</span><span class="tag">Canvas</span><span class="tag">WebGL</span>
+            </div>
+            <h3>Map Explorer</h3>
+            <p>Zoomable map with million‑point rendering and contextual tooltips.</p>
+          </div>
+          <div class="links">
+            <a class="btn" href="#">Live</a>
+            <a class="btn" href="#">Code</a>
+          </div>
+        </article> -->
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="reveal">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="kicker">Career</div>
+          <h2 class="title">Experience</h2>
+        </div>
+        <p class="desc"></p>
+      </div>
+
+      <div class="timeline">
+        <div class="item">
+          <div class="dot" aria-hidden="true"></div>
+          <div>
+            <div class="role"><h4>Senior Associate Consultant, Frontend — <a style="color: white;" href="https://www.infosys.com/" target="_blank">Infosys</a></h4><span>2023 — Present</span></div>
+            <p class="body">
+                • Updated existing React dev-extreme library components which boosted client satisfaction by 15 %.</p>
+                <p>• Build dynamic, interactive dashboard using React for GenAI application using D3.js, Material UI, tinycolor2 library
+to visualize real time customer interaction data for over 10M active users and received 90 % success rate.</p>
+          </div>
+        </div>
+        <div class="item">
+          <div class="dot"></div>
+          <div>
+            <div class="role"><h4>Consultant, Frontend - <a style="color: white;" href="https://www.Quinnox.com/" target="_blank">Quinnox</a></h4><span>2023 — 2025</span></div>
+            <p class="body">• Led the end-to-end development of multiple features of using jQuery, DataTables, JavaScript, and REST APIs,
+asynchronous handling, resulting in a 60% increase in client engagement.</p><p>
+• Upgraded a React application from Node.js (10.0.0 to 18.20.1) and SPFx (1.11.0 to 1.18.2) 50% faster than the
+planned timeline, optimized components, enhanced performance by 30%.</p><p>
+• Developed complex, scalable and reusable UI components using React Router, Redux tookit, optimized performance
+issue.</p><p>
+• Analyzed new requirements, tested using POC, provided efforts estimations, and implemented functionalities,</p>
+          </div>
+        </div>
+      <div class="item"> <div class="dot"></div> <div> <div class="role"><h4>Engineer-Cloud Services and Software - <a style="color: white;" href="https://www.ltimindtree.com/" target="_blank">LTIMindTree</a></h4><span>2020 — 2023</span></div> <p class="body">• Documented and standardized project artifacts, including estimation plans, WBD, defect sheets, design specs, UAT documents, user manuals, and release notes, ensuring compliance with work standards.</p><p> • Implemented CRUD operations, Autosave functionality, and comment handling, contributing to smoother user experiences using JQuery, Azure Logic Apps.</p><p> • Handled production related issues for React and Node.js, achieving a 90% resolution rate for critical issues.p> </div> </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="reveal">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="kicker">Capabilities</div>
+          <h2 class="title">Skills</h2>
+        </div>
+      </div>
+      <div class="skills">
+        <span class="pill"><i class="fa-brands fa-react"></i>React</span>
+        <span class="pill"><i class="fa-brands fa-js"></i>TypeScript</span>
+        <span class="pill"><i class="fa-brands fa-node-js"></i>Node js</span>
+        <span class="pill"><i class="fa-brands fa-js"></i>JavaScript</span>
+        <span class="pill"><i class="fa-brands fa-html5"></i>HTML5</span>
+        <span class="pill"><i class="fa-brands fa-css3-alt"></i>CSS3</span>
+        <span class="pill"><i class="fa-brands fa-node-js"></i>MongoDB</span>
+        <span class="pill"><i class="fa-brands fa-firebase"></i>firebase</span>
+        <span class="pill"><i class="fa-brands fa-code"></i>Data Structures and Algorithms</span>
+        <span class="pill"><i class="fa-brands fa-jest"></i>Jest and React Testing library</span>
+        <span class="pill"><i class="fa-brands fa-azure-devops"></i>Azure DevOps</span>
+        <span class="pill"><i class="fa-brands fa-github"></i>GitHub</span>
+        <span class="pill"><i class="fa-brands fa-figma"></i>Figma</span>
+        <span class="pill"><i class="fa-brands fa-postman"></i>Postman</span>
+        <span class="pill"><i class="fa-brands fa-gen-ai"></i>GenAI</span>
+        <span class="pill"><i class="fa-brands fa-python"></i>Python</span>
+        <span class="pill"><i class="fa-brands fa-jira"></i>Jira</span>
+        <span class="pill"><i class="fa-brands fa-material-ui"></i>Material-UI</span>
+        <span class="pill"><i class="fa-brands fa-d3"></i>D3.js</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="reveal">
+    <div class="container contact">
+      <div class="panel">
+        <h3>Let’s build something great</h3>
+        <p class="desc">I’m open to SDE‑2 Frontend roles</p>
+        <p>Email: <a href="mailto:poojasonare2712@gmail.com">poojasonare2712@gmail.com</a></p>
+        <p>Social: <a href="https://github.com/Pooja-Techn" target="_blank" rel="noreferrer">GitHub</a> · <a href="https://www.linkedin.com/in/pooja-sonare-6a5279187/" target="_blank" rel="noreferrer">LinkedIn</a> 
+            · <a href="https://www.naukri.com/code360/profile/PoojaTech" target="_blank" rel="noreferrer">Code360</a></p>
+            <p> Contact no: <b> +91 7507877810</b></p>
+      </div>
+      <!-- <div class="panel">
+        <form name="contact" onsubmit="event.preventDefault(); alert('Thanks! This is a static demo form.');">
+          <input class="input" type="text" name="name" placeholder="Your name" required />
+          <input class="input" type="email" name="email" placeholder="Your email" required />
+          <textarea class="input" name="message" placeholder="Your message"></textarea>
+          <button class="submit" type="submit">Send Message</button>
+        </form>
+      </div> -->
+    </div>
+  </section>
+
+  <footer>
+    © <span id="year"></span> Pooja Sonare. Built with ❤.
+  </footer>
+
+  <script>
+    // Smooth in‑view reveal
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('active'); });
+    },{ threshold:.12 });
+    document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+
+   
+
+
+    
+
+
+  </script>
+</body>
+</html>
